@@ -48,3 +48,19 @@ class HomeForm(HomeFormTemplate):
     self.name_box.text = ""
     self.email_box.text = ""
     self.feedback_box.text = ""
+
+  def Categorize_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    iris_category=anvil.server.call('predict_iris',
+                                   self.Sepal_Length.text,
+                                    self.Sepal_width.text,
+                                    self.Petal_length.text,
+                                    self.Petal_width.text
+                                   )
+    if iris_category:
+      self.species_label.visible=True
+      self.species_label.text="The species is",iris_category.capitalize()
+
+  def text_box_2_pressed_enter(self, **event_args):
+    """This method is called when the user presses Enter in this text box"""
+    pass
